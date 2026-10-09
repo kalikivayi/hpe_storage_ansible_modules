@@ -1,0 +1,36 @@
+# (c) Copyright 2026 Hewlett Packard Enterprise Development LP
+
+# Never commit real credentials or filled-in inventory.
+inventory/group_vars/all.yml
+inventory/group_vars/vault.yml
+*.vault
+.vaultpass
+
+# Run artefacts
+reports/*
+!reports/.gitkeep
+*.retry
+*.log
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Built collection / chart artefacts
+*.tar.gz
+*.tgz
+dist/
+
+# ---------------------------------------------------------------------------
+# alletramp/csi_failback — third-party Ansible collections installed from
+# Galaxy via `ansible-galaxy collection install -r requirements.yml -p
+# ./collections` (kubernetes.core and its dependencies). Only the HPE
+# collection hpe/csi_failback is source. Matches at ANY depth so a stray or
+# relocated collections/ directory is never committed by accident.
+# ---------------------------------------------------------------------------
+**/collections/ansible_collections/*
+!**/collections/ansible_collections/hpe/
+**/collections/ansible_collections/hpe/*
+!**/collections/ansible_collections/hpe/csi_failback/
+**/collections/ansible_collections/*.info/
